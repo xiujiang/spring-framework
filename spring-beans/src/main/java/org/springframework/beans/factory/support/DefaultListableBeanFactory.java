@@ -74,11 +74,7 @@ import org.springframework.core.OrderComparator;
 import org.springframework.core.ResolvableType;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.lang.Nullable;
-import org.springframework.util.Assert;
-import org.springframework.util.ClassUtils;
-import org.springframework.util.CompositeIterator;
-import org.springframework.util.ObjectUtils;
-import org.springframework.util.StringUtils;
+import org.springframework.util.*;
 
 /**
  * Spring's default implementation of the {@link ConfigurableListableBeanFactory}
@@ -587,6 +583,11 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	}
 
 	@Override
+	protected Object createBean(String beanName, RootBeanDefinition mbd, Object[] args) throws BeanCreationException {
+		return super.createBean(beanName, mbd, args);
+	}
+
+	@Override
 	@SuppressWarnings("unchecked")
 	public <T> Map<String, T> getBeansOfType(@Nullable Class<T> type, boolean includeNonSingletons, boolean allowEagerInit)
 			throws BeansException {
@@ -1022,6 +1023,16 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	@Override
 	protected boolean allowAliasOverriding() {
 		return isAllowBeanDefinitionOverriding();
+	}
+
+	@Override
+	public void resolveAliases(StringValueResolver valueResolver) {
+		super.resolveAliases(valueResolver);
+	}
+
+	@Override
+	public boolean hasAlias(String name, String alias) {
+		return super.hasAlias(name, alias);
 	}
 
 	@Override

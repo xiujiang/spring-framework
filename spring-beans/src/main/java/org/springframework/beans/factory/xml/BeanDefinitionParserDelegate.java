@@ -429,7 +429,7 @@ public class BeanDefinitionParserDelegate {
 						"' as bean name and " + aliases + " as aliases");
 			}
 		}
-
+		//判断beanName和aliases 是否已经存在了，如果存在，则抛出异常
 		if (containingBean == null) {
 			checkNameUniqueness(beanName, aliases, ele);
 		}

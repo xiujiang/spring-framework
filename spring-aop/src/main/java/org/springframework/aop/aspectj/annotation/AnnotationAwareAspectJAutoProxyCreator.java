@@ -58,6 +58,10 @@ public class AnnotationAwareAspectJAutoProxyCreator extends AspectJAwareAdvisorA
 	@Nullable
 	private BeanFactoryAspectJAdvisorsBuilder aspectJAdvisorsBuilder;
 
+	@Override
+	public boolean postProcessAfterInstantiation(Object bean, String beanName) {
+		return super.postProcessAfterInstantiation(bean, beanName);
+	}
 
 	/**
 	 * Set a list of regex patterns, matching eligible @AspectJ bean names.

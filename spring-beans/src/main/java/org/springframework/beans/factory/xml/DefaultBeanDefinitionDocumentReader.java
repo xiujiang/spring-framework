@@ -144,7 +144,8 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 				}
 			}
 		}
-
+		//preProcessXml 和postProcessXml 都为空，如果有子类实现了DefaultBeanDefinitionDocumentreader
+		//的话，即可重写这两个方法，在Bean解析前后进行处理
 		preProcessXml(root);
 		parseBeanDefinitions(root, this.delegate);
 		postProcessXml(root);
